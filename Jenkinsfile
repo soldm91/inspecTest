@@ -1,28 +1,12 @@
 pipeline {
   agent any
   stages {
-    stage('Create subnet') {
+    stage('Test InSpec') {
       steps {
-        echo 'creating subnet'
-        sh '''(cd /var/lib/jenkins/terraformPractice/; sudo git pull)
-cp -f /var/lib/jenkins/variables/variables.tf variables.tf
-cp -f /var/lib/jenkins/terraformPractice/newSubnet.tf newSubnet.tf
-terraform init
-terraform plan
-terraform apply'''
-      }
-    }
-    stage('Sleep 3 Minutes') {
-      steps {
-        echo 'Sleeping'
-        sleep(time: 3, unit: 'MINUTES')
-        echo 'done sleeping'
-      }
-    }
-    stage('Destroy') {
-      steps {
-        echo 'destroying'
-        sh 'terraform destroy -force || true'
+        echo 'Testing Inspex'
+        sh '''mkdir inspecTests
+cp -f /var/lib/jenkins/inspecTests/test.rb test.rb
+(cd inspecTests; sudo inspec exec test.rb -t ssh://ec2-user@34.228.213.218 -i ~/.ssh/id_rsa)'''
       }
     }
   }
