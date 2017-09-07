@@ -5,7 +5,7 @@ pipeline {
       steps {
         parallel(
           "Test listening 8080": {
-            echo 'Testing Inspex'
+            echo 'Testing InSpec'
             sh '''cp -f /var/lib/jenkins/inspecTests/test.rb test.rb
 sudo inspec exec test.rb -t ssh://ec2-user@172.31.23.255 -i /home/ec2-user/.ssh/id_rsa'''
             
