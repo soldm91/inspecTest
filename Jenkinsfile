@@ -17,7 +17,7 @@ sudo inspec exec hostname.rb -t ssh://ec2-user@172.31.23.255 -i /home/ec2-user/.
           },
           "Test DNS": {
             sh '''cp -f /var/lib/jenkins/inspecTests/dns.rb dns.rb
-sudo inspec exec dns.rb -t ssh://ec2-user@172.31.23.255 -i /home/ec2-user/.ssh/id_rsa'''
+sudo inspec exec dns.rb'''
             
           },
           "Test Resolv": {
